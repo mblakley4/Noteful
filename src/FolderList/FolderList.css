@@ -1,0 +1,55 @@
+.addFolder {
+  border: 2px solid black;
+  text-align: center;
+  padding: 10px;
+  width: 50%;
+  border-radius: 50px;
+  margin: 10px 1px;
+}
+
+/* ----------------------------- */
+
+.FolderList__list {
+  list-style-type: none;
+  margin: 130px 0 0;
+  padding: 0;
+}
+
+.FolderList__button-wrapper {
+  margin: 0 0 0 auto;
+  max-width: 180px;
+}
+
+.FolderList__add-folder-button {
+  margin: 20px auto;
+}
+.FolderList__add-folder-button:hover {
+  background-color: #29862e;
+  color: white;
+}
+
+.FolderList__folder-link {
+  background-color: #030f1f;
+  color: #b5b3b3;
+  display: block;
+  font-family: var(--custom-font);
+  font-size: 20px;
+  margin: 0 0 8px auto;
+  max-width: 180px;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+.FolderList__folder-link:hover {
+  color: #FFB72F;
+  cursor: pointer;
+}
+.FolderList__folder-link.active {
+  background-color: #102541;
+}
+
+.FolderList__num-notes {
+  color: #adadad;
+  display: block;
+  float: right;
+  font-size: 10px;
+}
