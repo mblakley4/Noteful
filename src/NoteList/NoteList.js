@@ -19,7 +19,6 @@ class NoteList extends React.Component {
   static contextType = NotefulContext;
 
 	goHomeOnDelete = noteId => {
-		console.log('goHome func ran');
     this.props.history.push(`/`)
   }
 
@@ -46,6 +45,7 @@ class NoteList extends React.Component {
             tag={Link}
             to='/add-note'
             type='button'
+						aria-label='Add Note'
             className='NoteList__add-note-button'
           >
             <FontAwesomeIcon icon='plus' />

@@ -37,6 +37,7 @@ class FolderList extends React.Component {
               tag={Link}
               to='/add-folder'
               type='button'
+              aria-label="Add Folder"
               className='FolderList__add-folder-button'
             >
               <FontAwesomeIcon icon='plus' />

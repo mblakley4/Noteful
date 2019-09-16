@@ -2,6 +2,7 @@ import React from 'react'
 import './AddNote.css'
 import NotefulContext from '../NotefulContext'
 import Config from '../Config'
+import ValidationError from '../ValidationError'
 
 export default class AddFolder extends React.Component {
   constructor(props) {
@@ -31,7 +32,7 @@ export default class AddFolder extends React.Component {
       name: this.state.name.value,
       content: this.state.content.value,
       folderId: this.state.folderId.value,
-      modified: new Date,
+      modified: new Date(),
     }
 
   fetch(Config.API_ENDPOINT + '/notes', {
@@ -49,7 +50,7 @@ export default class AddFolder extends React.Component {
     }
     return res.json()
   })
-  .then(res => {
+  .then(note => {
     this.context.addNote(note);
     this.props.history.push(`/folder/${note.folderId}`)
   })
@@ -57,6 +58,20 @@ export default class AddFolder extends React.Component {
     console.log(error);
   })
 }
+
+  validateName(fieldValue) {
+    const name = this.state.name.value.trim();
+    if (name.length === 0) {
+      return 'A name is required'
+    }
+  }
+
+  validateFolderSelect() {
+    const folderSelect = this.state.folderId.value;
+    if (folderSelect === "null") {
+      return 'Please select a folder'
+    }
+  }
 
   updateNoteName(name) {
     this.setState({name: {value: name, touched: true}});
@@ -81,20 +96,26 @@ export default class AddFolder extends React.Component {
             type="text"
             className="noteName"
             id="name"
+            aria-label="Name"
             onChange={e => this.updateNoteName(e.target.value)}
             required
           />
+          {this.state.name.touched && (<ValidationError message={this.validateName()}/> )}
           <label htmlFor="content">Content</label>
           <textarea
             type="text"
             className="noteContent"
             id="content"
+            required
+            aria-required="true"
+            aria-label="Content"
             onChange={e => this.updateNoteContent(e.target.value)}
           />
           <label htmlFor="folderSelect">Folder</label>
           <select
             name="folderSelect"
             id="folderSelect"
+            aria-label="Folder"
             onChange={e => this.updateFolderId(e.target.value)}>
             <option value="null">...</option>
             {folders.map(folder =>
@@ -103,9 +124,14 @@ export default class AddFolder extends React.Component {
               </option>
             )}
           </select>
+          {this.state.folderId.touched && (<ValidationError message={this.validateFolderSelect()}/> )}
           <button
             type="submit"
             className="note-button"
+            disabled={
+              this.validateName() ||
+              this.validateFolderSelect()
+            }
           >
             Add Note
           </button>

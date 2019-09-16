@@ -35,7 +35,7 @@ function Note(props) {
   Note.defaultProps = {
     id: '',
     name: '',
-    modified: {}
+    modified: ''
   }
   return (
     <NotefulContext.Consumer>
@@ -50,6 +50,7 @@ function Note(props) {
           <button
             className='Note__delete'
             type='button'
+            aria-label='delete note'
             onClick={() => {
               deleteNoteRequest(
                 props.id,
@@ -77,11 +78,12 @@ function Note(props) {
     </NotefulContext.Consumer>
   )
 
-  Note.propTypes = {
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    modified: PropTypes.object.isRequired
-  }
+}
+
+Note.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  modified: PropTypes.string.isRequired
 }
 
 export default Note

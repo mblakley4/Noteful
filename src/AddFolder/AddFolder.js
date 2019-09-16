@@ -2,6 +2,7 @@ import React from 'react'
 import './AddFolder.css'
 import NotefulContext from '../NotefulContext'
 import Config from '../Config'
+import ValidationError from '../ValidationError'
 
 export default class AddFolder extends React.Component {
   constructor(props) {
@@ -36,13 +37,20 @@ export default class AddFolder extends React.Component {
       }
       return res.json()
     })
-    .then(res => {
+    .then(folder => {
       this.context.addFolder(folder);
       this.props.history.push(`/folder/${folder.id}`)
     })
     .catch(error => {
       console.log(error);
     })
+  }
+
+  validateName(fieldValue) {
+    const name = this.state.name.value.trim();
+    if (name.length === 0) {
+      return 'A name is required'
+    }
   }
 
   updateFolderName(name) {
@@ -59,10 +67,13 @@ export default class AddFolder extends React.Component {
             type="text"
             className="folderName"
             id="name"
+            aria-label="Name"
             onChange={e => this.updateFolderName(e.target.value)}/>
+            {this.state.name.touched && (<ValidationError message={this.validateName()}/>)}
           <button
             type="submit"
             className="folder-button"
+            disabled={this.validateName()}
           >
             Add Folder
           </button>
