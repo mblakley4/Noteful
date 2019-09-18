@@ -10,7 +10,6 @@ import AddNote from './AddNote/AddNote';
 import Config from './Config';
 import MainError from './MainError';
 import NavError from './NavError';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './App.css';
 
 

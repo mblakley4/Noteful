@@ -3,8 +3,9 @@ import './AddNote.css'
 import NotefulContext from '../NotefulContext'
 import Config from '../Config'
 import ValidationError from '../ValidationError'
+import PropTypes from 'prop-types';
 
-export default class AddFolder extends React.Component {
+export default class AddNote extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -139,4 +140,9 @@ export default class AddFolder extends React.Component {
       </div>
     );
   }
+}
+
+AddNote.propTypes = {
+  path: PropTypes.string,
+  component: PropTypes.object
 }

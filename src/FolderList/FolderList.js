@@ -4,6 +4,7 @@ import { NavLink, Link } from 'react-router-dom'
 import NotefulContext from '../NotefulContext'
 import CircleButton from '../CircleButton/CircleButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import PropTypes from 'prop-types';
 
 
 const countNotesForFolder = (notes=[], folderId) =>
@@ -48,6 +49,12 @@ class FolderList extends React.Component {
         </div>
     )
   }
+}
+
+FolderList.propTypes = {
+  key: PropTypes.string,
+  path: PropTypes.string,
+  component: PropTypes.object
 }
 
 export default FolderList

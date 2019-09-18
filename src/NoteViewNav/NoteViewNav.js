@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CircleButton from '../CircleButton/CircleButton'
 import NotefulContext from '../NotefulContext'
 import './NoteViewNav.css'
+import PropTypes from 'prop-types'
 
 function findFolder(folders=[], folderId) {
 	const theFolder = folders.find(folder => folder.id === folderId)
@@ -52,4 +53,9 @@ export default class NoteViewNav extends React.Component {
       </div>
     )
   }
+}
+
+NoteViewNav.propTypes = {
+  path: PropTypes.string,
+  component: PropTypes.object
 }

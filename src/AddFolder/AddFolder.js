@@ -3,6 +3,7 @@ import './AddFolder.css'
 import NotefulContext from '../NotefulContext'
 import Config from '../Config'
 import ValidationError from '../ValidationError'
+import PropTypes from 'prop-types';
 
 export default class AddFolder extends React.Component {
   constructor(props) {
@@ -81,4 +82,9 @@ export default class AddFolder extends React.Component {
       </div>
     );
   }
+}
+
+AddFolder.propTypes = {
+  path: PropTypes.string,
+  component: PropTypes.object
 }

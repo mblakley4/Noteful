@@ -2,6 +2,7 @@ import React from 'react'
 import Note from '../Note/Note'
 import './NoteViewMain.css'
 import NotefulContext from '../NotefulContext'
+import PropTypes from 'prop-types';
 
 function findNote(notes=[], noteId) {
 	const theNote = notes.find(note => note.id === noteId)
@@ -41,4 +42,9 @@ NoteViewMain.defaultProps = {
   note: {
     content: '',
   }
+}
+
+NoteViewMain.propTypes = {
+  path: PropTypes.string,
+  component: PropTypes.object
 }

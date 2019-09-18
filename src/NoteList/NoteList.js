@@ -5,6 +5,7 @@ import CircleButton from '../CircleButton/CircleButton'
 import Note from '../Note/Note'
 import NotefulContext from '../NotefulContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import PropTypes from 'prop-types';
 
 function getNotesForFolder(notes, folderId) {
 	const noteList = (!folderId) ?
@@ -57,6 +58,12 @@ class NoteList extends React.Component {
       </section>
     )
   }
+}
+
+NoteList.propTypes = {
+  key: PropTypes.string,
+  path: PropTypes.string,
+  component: PropTypes.object
 }
 
 export default NoteList
