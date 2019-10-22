@@ -70,7 +70,6 @@ export default class AddNote extends React.Component {
 
   validateFolderSelect() {
     const folderSelect = this.state.folder_id.value;
-    console.log(folderSelect);
     if (folderSelect === "null") {
       return 'Please select a folder'
     }
