@@ -33,4 +33,5 @@ label {
 .folder-button:focus:enabled {
   background-color: #29862e;
   color: #dedede;
+  cursor: pointer;
 }

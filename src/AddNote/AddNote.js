@@ -6,6 +6,7 @@ import ValidationError from '../ValidationError'
 import PropTypes from 'prop-types';
 
 export default class AddNote extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -17,8 +18,8 @@ export default class AddNote extends React.Component {
         value: '',
         touched: false
       },
-      folderId: {
-        value: '',
+      folder_id: {
+        value: 'null',
         touched: false
       }
       }
@@ -32,7 +33,7 @@ export default class AddNote extends React.Component {
     const note = {
       name: this.state.name.value,
       content: this.state.content.value,
-      folderId: this.state.folderId.value,
+      folder_id: this.state.folder_id.value,
       modified: new Date(),
     }
 
@@ -53,7 +54,7 @@ export default class AddNote extends React.Component {
   })
   .then(note => {
     this.context.addNote(note);
-    this.props.history.push(`/folder/${note.folderId}`)
+    this.props.history.push(`/folder/${note.folder_id}`)
   })
   .catch(error => {
     console.log(error);
@@ -68,7 +69,8 @@ export default class AddNote extends React.Component {
   }
 
   validateFolderSelect() {
-    const folderSelect = this.state.folderId.value;
+    const folderSelect = this.state.folder_id.value;
+    console.log(folderSelect);
     if (folderSelect === "null") {
       return 'Please select a folder'
     }
@@ -82,8 +84,8 @@ export default class AddNote extends React.Component {
     this.setState({content: {value: content, touched: true}});
   }
 
-  updateFolderId(folderId) {
-    this.setState({folderId: {value: folderId, touched: true}});
+  updatefolder_id(folder_id) {
+    this.setState({folder_id: {value: folder_id, touched: true}});
   }
 
   render() {
@@ -117,7 +119,7 @@ export default class AddNote extends React.Component {
             name="folderSelect"
             id="folderSelect"
             aria-label="Folder"
-            onChange={e => this.updateFolderId(e.target.value)}>
+            onChange={e => this.updatefolder_id(e.target.value)}>
             <option value="null">...</option>
             {folders.map(folder =>
               <option key={folder.id} value={folder.id}>
@@ -125,7 +127,7 @@ export default class AddNote extends React.Component {
               </option>
             )}
           </select>
-          {this.state.folderId.touched && (<ValidationError message={this.validateFolderSelect()}/> )}
+          {this.state.folder_id.touched && (<ValidationError message={this.validateFolderSelect()}/> )}
           <button
             type="submit"
             className="note-button"

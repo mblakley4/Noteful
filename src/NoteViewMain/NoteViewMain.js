@@ -10,16 +10,17 @@ function findNote(notes=[], noteId) {
 }
 
 export default class NoteViewMain extends React.Component {
-  static contextType = NotefulContext
+
+	static contextType = NotefulContext
 
 	goHomeOnDelete = noteId => {
     this.props.history.push(`/`)
   }
 
   render() {
-    const { notes=[] } = this.context
-		const { noteId } = this.props.match.params;
-		const note = findNote(notes, noteId) || { content: ''};
+    const { notes } = this.context
+		const noteId  = this.props.match.params.note_id
+		const note = findNote(notes, parseInt(noteId)) || { content: ''};
     return (
       <section className='NoteViewMain'>
         <Note
@@ -28,11 +29,12 @@ export default class NoteViewMain extends React.Component {
           modified={note.modified}
 					onDeleteNote={this.goHomeOnDelete}
         />
-        <div className='NoteViewMain__content'>
-          {note.content.split(/\n \r|\n/).map((para, i) =>
-            <p key={i}>{para}</p>
-          )}
-        </div>
+				<div className='NoteViewMain__content'>
+					{note.content.split(/\n \r|\n/).map((para, i) =>
+						<p key={i}>{para}</p>
+					)}
+				</div>
+
       </section>
     )
   }

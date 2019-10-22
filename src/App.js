@@ -22,6 +22,7 @@ class App extends React.Component {
 
 
 	deleteNote = noteId => {
+		console.log(typeof noteId);
 		const newNotes = this.state.notes.filter(n =>
 			n.id !== noteId
 		)
@@ -81,7 +82,7 @@ class App extends React.Component {
 	renderNavRoutes(){
 		return (
 			<>
-				{['/', '/folder/:folderId'].map(path => (
+				{['/', '/folder/:folder_id'].map(path => (
 					<Route
 						exact
 						key={path}
@@ -89,7 +90,7 @@ class App extends React.Component {
 						component={FolderList}
 						/>
 					))}
-					<Route path="/note/:noteId" component={NoteViewNav} />
+					<Route path="/note/:note_id" component={NoteViewNav} />
 					<Route path="/add-folder" component={NoteViewNav} />
 					<Route path="/add-note" component={NoteViewNav} />
 			</>
@@ -98,7 +99,7 @@ class App extends React.Component {
 	renderMainRoutes(){
 		return (
 			<>
-				{['/', '/folder/:folderId'].map(path => (
+				{['/', '/folder/:folder_id'].map(path => (
 					<Route
 						exact
 						key={path}
@@ -106,7 +107,7 @@ class App extends React.Component {
 						component={NoteList}
 						/>
 					))}
-					<Route path="/note/:noteId" component={NoteViewMain} />
+					<Route path="/note/:note_id" component={NoteViewMain} />
 					<Route path='/add-folder' component={AddFolder}	/>
 					<Route path="/add-note" component={AddNote} />
 			</>

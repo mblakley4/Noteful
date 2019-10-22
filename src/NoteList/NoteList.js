@@ -7,15 +7,15 @@ import NotefulContext from '../NotefulContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PropTypes from 'prop-types';
 
-function getNotesForFolder(notes, folderId) {
-	const noteList = (!folderId) ?
-	notes : notes.filter(note => note.folderId === folderId);
+function getNotesForFolder(notes, folder_id) {
+	const noteList = (!folder_id) ?
+	notes : notes.filter(note => note.folder_id === folder_id);
 	return noteList
 }
 
 class NoteList extends React.Component {
 	static defaultProps = {
-    folderId: ''
+    folder_id: ''
   };
   static contextType = NotefulContext;
 
@@ -25,8 +25,8 @@ class NoteList extends React.Component {
 
   render() {
     const { notes } = this.context
-    const { folderId } = this.props.match.params
-    const notesForFolder = getNotesForFolder(notes, folderId)
+    const { folder_id }  = this.props.match.params
+    const notesForFolder = getNotesForFolder(notes, parseInt(folder_id))
     return (
       <section className='NoteList'>
         <ul>

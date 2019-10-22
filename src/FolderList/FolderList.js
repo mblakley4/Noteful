@@ -7,8 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PropTypes from 'prop-types';
 
 
-const countNotesForFolder = (notes=[], folderId) =>
-  notes.filter(note => note.folderId === folderId).length
+const countNotesForFolder = (notes=[], folder_id) =>
+  notes.filter(note => note.folder_id === folder_id).length
 
 class FolderList extends React.Component {
   static contextType = NotefulContext;

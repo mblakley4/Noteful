@@ -7,12 +7,12 @@ import NotefulContext from '../NotefulContext';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
-function deleteNoteRequest (noteId, cb) {
+function deleteNoteRequest (noteId, callBack) {
   fetch(Config.API_ENDPOINT + `/notes/${noteId}`, {
     method: 'DELETE',
     headers: {
-      'content-type': 'application/json',
-    }
+      'content-type': 'application/json'
+    },
   })
   .then(res => {
     if (!res.ok) {
@@ -20,10 +20,10 @@ function deleteNoteRequest (noteId, cb) {
         throw error
       })
     }
-    return res.json()
   })
-  .then(data => {
-    cb(noteId)
+  .then(res => {
+    console.log('hello' + noteId + (typeof noteId))
+    callBack(noteId)
   })
   .catch(error => {
     console.log(error);
@@ -81,7 +81,7 @@ function Note(props) {
 }
 
 Note.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   modified: PropTypes.string.isRequired
 }
